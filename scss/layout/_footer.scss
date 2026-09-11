@@ -1,0 +1,126 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+
+.footer {
+    background: $color-dark-alt;
+    border-top: 2px solid $color-primary;
+    padding: $space-xl 0 0;
+
+    @include tablet { padding: $space-2xl 0 0; }
+
+    &-inner {
+        @include contenedor;
+        display: grid;
+        grid-template-areas: "marca" "nav" "contacto";
+        gap: $space-lg;
+        padding-bottom: $space-xl;
+        border-bottom: 1px solid $color-border-dark;
+
+        @include tablet {
+            grid-template-areas: "marca nav contacto";
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+    }
+
+    &-marca {
+        grid-area: marca;
+        @include flex-column($space-sm);
+
+        &-logo {
+            font-family: $font-display;
+            font-size: 2.2rem;
+            color: $color-secondary;
+            letter-spacing: 0.05em;
+
+            span { color: $color-primary; }
+        }
+
+        &-desc {
+            font-size: $size-sm;
+            color: $color-gray;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+    }
+
+    &-social {
+        display: flex;
+        gap: $space-sm;
+        margin-top: $space-xs;
+
+        a {
+            width: 40px;
+            height: 40px;
+            border-radius: $radius-full;
+            border: 1px solid $color-border;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-gray;
+            font-size: 1rem;
+            transition: all $transition-base;
+
+            &:hover {
+                border-color: $color-primary;
+                color: $color-primary;
+                background: rgba($color-primary, 0.1);
+                transform: translateY(-3px);
+                box-shadow: $shadow-orange;
+            }
+
+            &.whatsapp:hover {
+                border-color: #25d366;
+                color: #25d366;
+                background: rgba(37, 211, 102, 0.1);
+            }
+        }
+    }
+
+    &-col {
+        @include flex-column($space-sm);
+
+        h4 {
+            font-family: $font-accent;
+            font-size: $size-xs;
+            font-weight: $weight-heavy;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: $color-primary;
+            margin-bottom: $space-xs;
+        }
+
+        ul { @include flex-column($space-xs); }
+
+        li,
+        li a {
+            font-size: $size-sm;
+            color: $color-gray;
+            transition: color $transition-base;
+        }
+
+        li a:hover { color: $color-primary; }
+    }
+
+    &-bottom {
+        @include contenedor;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: $space-sm;
+        padding-top: $space-md;
+        padding-bottom: $space-md;
+
+        p {
+            font-size: $size-xs;
+            color: rgba($color-secondary, 0.3);
+            font-family: $font-accent;
+        }
+
+        span {
+            font-size: $size-xs;
+            color: $color-primary;
+            font-family: $font-accent;
+        }
+    }
+}

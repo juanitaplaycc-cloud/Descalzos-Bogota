@@ -1,0 +1,116 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+
+.faq {
+    &-section {
+        @include seccion-padding;
+        background: $color-dark;
+    }
+
+    &-inner {
+        @include contenedor(900px);
+    }
+}
+
+// ACCORDION OVERRIDE BOOTSTRAP
+.accordion-custom {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    .accordion-item {
+        background: $color-dark-card;
+        border: 1px solid $color-border-dark;
+        border-radius: $radius-lg;
+        overflow: hidden;
+        transition: border-color $transition-base;
+
+        &:hover { border-color: $color-border; }
+    }
+
+    .accordion-button {
+        background: $color-dark-card;
+        color: $color-secondary;
+        font-family: $font-accent;
+        font-size: $size-base;
+        font-weight: $weight-bold;
+        padding: $space-md $space-lg;
+        box-shadow: none;
+        transition: all $transition-base;
+
+        &:not(.collapsed) {
+            background: rgba($color-primary, 0.08);
+            color: $color-primary;
+            box-shadow: none;
+        }
+
+        &::after {
+            filter: invert(1);
+            opacity: 0.5;
+        }
+
+        &:not(.collapsed)::after {
+            filter: invert(0.6) sepia(1) saturate(10) hue-rotate(10deg);
+            opacity: 1;
+        }
+
+        &:focus { box-shadow: none; }
+    }
+
+    .accordion-body {
+        background: rgba($color-primary, 0.04);
+        color: $color-gray-light;
+        font-size: $size-base;
+        line-height: 1.8;
+        padding: $space-sm $space-lg $space-lg;
+        font-weight: $weight-light;
+        border-top: 1px solid $color-border-dark;
+    }
+}
+
+// CONTACTO RAPIDO FAQ
+.faq-contacto {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-md;
+    margin-top: $space-xl;
+
+    @include tablet {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &-card {
+        background: $color-dark-card;
+        border: 1px solid $color-border-dark;
+        border-radius: $radius-lg;
+        padding: $space-lg $space-md;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $space-sm;
+        text-align: center;
+        transition: all $transition-base;
+
+        &:hover {
+            border-color: $color-primary;
+            transform: translateY(-4px);
+            box-shadow: $shadow-orange;
+        }
+    }
+
+    &-icono {
+        font-size: 2rem;
+    }
+
+    &-titulo {
+        font-family: $font-accent;
+        font-size: $size-md;
+        font-weight: $weight-bold;
+        color: $color-secondary;
+    }
+
+    &-desc {
+        font-size: $size-sm;
+        color: $color-gray;
+    }
+}

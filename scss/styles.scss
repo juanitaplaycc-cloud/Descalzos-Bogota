@@ -1,0 +1,26 @@
+
+/* styles.scss — Punto de entrada
+Solo @use — sin código directo */
+
+
+/*utilities*/
+@use 'utilities/variables' as *;
+@use 'utilities/mixins' as *;
+@use 'utilities/extend';
+@use 'utilities/animations';
+
+/*Base*/
+@use 'base/base';
+@use 'base/tipografia';
+
+/*Layout*/
+@use 'layout/nav';
+@use 'layout/header';
+@use 'layout/footer';
+
+/*Components*/
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/catalogo';
+@use 'components/faq';
+@use 'components/social';

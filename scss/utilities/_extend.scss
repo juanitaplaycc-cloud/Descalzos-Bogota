@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+%tag {
+    font-size: $size-xs;
+    font-weight: $weight-heavy;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    font-family: $font-accent;
+}
+
+%badge {
+    font-size: $size-xs;
+    font-weight: $weight-bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: $radius-full;
+}
+
+%btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $font-accent;
+    font-weight: $weight-bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: $radius-md;
+    cursor: pointer;
+    border: none;
+    transition: all $transition-base;
+    width: fit-content;
+    text-decoration: none;
+}
+
+%disponible {
+    font-size: $size-xs;
+    font-weight: $weight-bold;
+    color: $color-available;
+    background: $color-available-bg;
+    border: 1px solid rgba($color-available, 0.3);
+    padding: 3px 10px;
+    border-radius: $radius-full;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+%stack {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+%imagen-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+%seccion-titulo {
+    font-family: $font-display;
+    color: $color-secondary;
+    line-height: 1;
+    letter-spacing: 0.02em;
+}

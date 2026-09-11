@@ -1,0 +1,208 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/extend' as *;
+
+// FILTROS
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    margin-bottom: $space-lg;
+
+    &-btn {
+        padding: 10px 24px;
+        font-family: $font-accent;
+        font-size: $size-xs;
+        font-weight: $weight-bold;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-radius: $radius-full;
+        border: 2px solid $color-border-dark;
+        background: transparent;
+        color: $color-gray;
+        cursor: pointer;
+        transition: all $transition-base;
+
+        &:hover {
+            border-color: $color-primary;
+            color: $color-primary;
+        }
+
+        &.activo {
+            background: $color-primary;
+            border-color: $color-primary;
+            color: $color-secondary;
+            box-shadow: $shadow-orange;
+        }
+    }
+}
+
+// GRID CATALOGO
+.catalogo {
+    &-section {
+        @include seccion-padding;
+        background: $color-dark;
+    }
+
+    &-inner {
+        @include contenedor;
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-sm;
+
+        @include tablet {
+            grid-template-columns: repeat(3, 1fr);
+            gap: $space-md;
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @include wide {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+
+    // TARJETA PRODUCTO
+    &-card {
+        background: $color-dark-card;
+        border: 1px solid $color-border-dark;
+        border-radius: $radius-lg;
+        overflow: hidden;
+        transition: all $transition-base;
+        cursor: pointer;
+
+        &:hover {
+            border-color: $color-primary;
+            transform: translateY(-6px);
+            box-shadow: $shadow-orange;
+
+            .catalogo-card-img img {
+                transform: scale(1.08);
+            }
+
+            .catalogo-card-overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-card-img {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        background: $color-dark-alt;
+
+        img {
+            @extend %imagen-cover;
+            transition: transform $transition-slow;
+        }
+    }
+
+    &-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba($color-primary, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity $transition-base;
+
+        span {
+            font-family: $font-accent;
+            font-size: $size-xs;
+            font-weight: $weight-bold;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: $color-secondary;
+            background: rgba($color-primary, 0.9);
+            padding: 8px 16px;
+            border-radius: $radius-full;
+        }
+    }
+
+    &-card-info {
+        padding: 12px;
+        @include flex-column(6px);
+    }
+
+    &-card-nombre {
+        font-family: $font-accent;
+        font-size: $size-sm;
+        font-weight: $weight-bold;
+        color: $color-secondary;
+        line-height: 1.3;
+    }
+
+    &-card-tallas {
+        font-size: $size-xs;
+        color: $color-gray;
+        font-family: $font-accent;
+        letter-spacing: 0.06em;
+    }
+
+    &-card-disponible {
+        @extend %disponible;
+        width: fit-content;
+    }
+}
+
+// CATEGORIA TITULO
+.categoria-titulo {
+    font-family: $font-display;
+    font-size: 3rem;
+    color: $color-secondary;
+    letter-spacing: 0.05em;
+    margin-bottom: $space-md;
+    padding-bottom: $space-sm;
+    border-bottom: 2px solid $color-primary;
+
+    span { color: $color-primary; }
+
+    @include tablet { font-size: 4rem; }
+}
+
+// CONTEO
+.catalogo-count {
+    font-size: $size-xs;
+    color: $color-gray;
+    font-family: $font-accent;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: $space-lg;
+}
+
+// BOTÓN QUIERO ESTE
+.catalogo-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px;
+    background: #25d366;
+    color: $color-secondary;
+    font-family: $font-accent;
+    font-size: $size-xs;
+    font-weight: $weight-heavy;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: all $transition-base;
+    border-radius: 0 0 $radius-lg $radius-lg;
+
+    i { font-size: 1rem; }
+
+    &:hover {
+        background: #1da851;
+        color: $color-secondary;
+        letter-spacing: 0.15em;
+    }
+}

@@ -1,0 +1,101 @@
+@use 'variables' as *;
+
+// FLEX
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column($gap: 0) {
+    display: flex;
+    flex-direction: column;
+    @if $gap != 0 { gap: $gap; }
+}
+
+// MEDIA QUERIES
+@mixin tablet {
+    @media (min-width: $bp-tablet) { @content; }
+}
+
+@mixin desktop {
+    @media (min-width: $bp-desktop) { @content; }
+}
+
+@mixin wide {
+    @media (min-width: $bp-wide) { @content; }
+}
+
+// GRID RESPONSIVE
+@mixin grid-responsive($cols-m: 1, $cols-t: 2, $cols-d: 3, $gap: $space-md) {
+    display: grid;
+    grid-template-columns: repeat($cols-m, 1fr);
+    gap: $gap;
+
+    @include tablet {
+        grid-template-columns: repeat($cols-t, 1fr);
+    }
+
+    @include desktop {
+        grid-template-columns: repeat($cols-d, 1fr);
+    }
+}
+
+// TRANSICION
+@mixin trans($prop: all, $dur: $transition-base) {
+    transition: $prop $dur;
+}
+
+// HOVER LIFT
+@mixin hover-lift($y: -6px, $shadow: $shadow-orange) {
+    @include trans;
+    &:hover {
+        transform: translateY($y);
+        box-shadow: $shadow;
+    }
+}
+
+// CONTENEDOR
+@mixin contenedor($max: $bp-wide) {
+    max-width: $max;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1.5rem;
+
+    @include tablet { padding: 0 2rem; }
+    @include desktop { padding: 0 2.5rem; }
+}
+
+// SECCION PADDING
+@mixin seccion-padding {
+    padding: $space-xl 0;
+    @include tablet { padding: $space-2xl 0; }
+}
+
+// GRADIENTE ORANGE
+@mixin gradient-orange {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+}
+
+// CARD DARK
+@mixin card-dark {
+    background: $color-dark-card;
+    border: 1px solid $color-border-dark;
+    border-radius: $radius-lg;
+    @include trans;
+    @include hover-lift;
+}
+
+// TEXTO ORANGE
+@mixin texto-orange {
+    background: linear-gradient(135deg, $color-primary, #ff9a44);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

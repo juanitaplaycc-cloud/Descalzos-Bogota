@@ -1,0 +1,264 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/extend' as *;
+
+// ===========================
+// HERO INDEX
+// ===========================
+.hero {
+    min-height: 100vh;
+    background: $color-dark;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    &-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 20% 50%, rgba($color-primary, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba($color-primary, 0.08) 0%, transparent 40%),
+            radial-gradient(ellipse at 60% 80%, rgba($color-primary, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+    }
+
+    &-grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255,107,0,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,107,0,0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+    }
+
+    &-inner {
+        @include contenedor;
+        display: grid;
+        grid-template-areas: "texto" "visual";
+        gap: $space-xl;
+        padding-top: 80px;
+        padding-bottom: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+
+        @include tablet {
+            grid-template-areas: "texto visual";
+            grid-template-columns: 1fr 1fr;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    &-texto {
+        grid-area: texto;
+        @include flex-column($space-md);
+        animation: fadeInLeft 1s ease both;
+    }
+
+    &-visual {
+        grid-area: visual;
+        position: relative;
+        height: 500px;
+
+        @include tablet { height: 600px; }
+        @include desktop { height: 700px; }
+    }
+
+    // ZAPATOS FLOTANTES
+    &-shoe {
+        position: absolute;
+        border-radius: $radius-lg;
+        overflow: hidden;
+        box-shadow: $shadow-lg;
+        border: 2px solid rgba($color-secondary, 0.3);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &--main {
+            width: 280px;
+            height: 280px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float 5s ease-in-out infinite;
+            border-color: $color-secondary;
+            box-shadow: $shadow-lg;
+            z-index: 3;
+
+            @include tablet {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        &--a {
+            width: 160px;
+            height: 160px;
+            top: 5%;
+            right: 10%;
+            animation: floatReverse 6s ease-in-out infinite;
+            animation-delay: 0.5s;
+            z-index: 2;
+            opacity: 0.85;
+        }
+
+        &--b {
+            width: 140px;
+            height: 140px;
+            bottom: 10%;
+            left: 5%;
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 1s;
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        &--c {
+            width: 120px;
+            height: 120px;
+            top: 15%;
+            left: 8%;
+            animation: floatReverse 5.5s ease-in-out infinite;
+            animation-delay: 1.5s;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        &--d {
+            width: 100px;
+            height: 100px;
+            bottom: 5%;
+            right: 5%;
+            animation: float 8s ease-in-out infinite;
+            animation-delay: 2s;
+            z-index: 1;
+            opacity: 0.5;
+        }
+    }
+
+    // DECORATIVOS
+    &-circle {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba($color-secondary, 0.2);
+        animation: rotateSlow 20s linear infinite;
+        pointer-events: none;
+
+        &--1 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &--2 {
+            width: 550px;
+            height: 550px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 30s;
+            animation-direction: reverse;
+            border-style: dashed;
+            opacity: 0.4;
+        }
+    }
+
+    &-badge {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        background: $color-dark-card;
+        border: 1px solid $color-border;
+        padding: $space-sm $space-md;
+        border-radius: $radius-lg;
+        @include flex-column(4px);
+        box-shadow: $shadow-lg;
+        animation: scaleIn 1s ease 0.8s both;
+
+        &-num {
+            font-family: $font-display;
+            font-size: 2rem;
+            color: $color-primary;
+            line-height: 1;
+        }
+
+        &-txt {
+            font-size: $size-xs;
+            color: $color-gray;
+            letter-spacing: 0.08em;
+            font-family: $font-accent;
+            text-transform: uppercase;
+        }
+    }
+
+    &-acciones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-sm;
+        margin-top: $space-xs;
+    }
+}
+
+// MARQUEE STRIP
+.marquee-strip {
+    background: $color-primary;
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &-inner {
+        display: inline-flex;
+        gap: $space-xl;
+        animation: marquee 20s linear infinite;
+    }
+
+    span {
+        font-family: $font-display;
+        font-size: 1.2rem;
+        color: $color-secondary;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+
+        &.dot {
+            color: rgba($color-secondary, 0.5);
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// PAGE HERO
+.page-hero {
+    background: $color-dark;
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid $color-border;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at top left,
+            rgba($color-primary, 0.1),
+            transparent 60%
+        );
+        pointer-events: none;
+    }
+
+    &-inner {
+        @include contenedor;
+        @include flex-column($space-md);
+        position: relative;
+        z-index: 1;
+    }
+}

@@ -1,0 +1,64 @@
+@use '../utilities/variables' as *;
+
+h1 {
+    font-family: $font-base;
+    font-size: $size-3xl;
+    font-weight: $weight-regular;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: $color-secondary;
+
+    @media (min-width: 768px)  { font-size: $size-4xl; }
+    @media (min-width: 1024px) { font-size: $size-5xl; }
+}
+
+h2 {
+    font-family: $font-base;
+    font-size: $size-2xl;
+    font-weight: $weight-regular;
+    line-height: 1.05;
+    color: $color-secondary;
+
+    @media (min-width: 768px)  { font-size: 3.5rem; }
+    @media (min-width: 1024px) { font-size: 4.5rem; }
+}
+
+h3 {
+    font-family: $font-accent;
+    font-size: $size-lg;
+    font-weight: $weight-bold;
+    color: $color-secondary;
+}
+
+h4 {
+    font-family: $font-accent;
+    font-size: $size-md;
+    font-weight: $weight-bold;
+    color: $color-secondary;
+}
+
+.tag {
+    font-size: $size-xs;
+    font-weight: $weight-heavy;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: $color-primary;
+    font-family: $font-accent;
+}
+
+.texto-orange {
+    background: linear-gradient(135deg, $color-primary, #ff9a44);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-punto { color: $color-primary; }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}

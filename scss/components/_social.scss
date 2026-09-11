@@ -1,0 +1,150 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+
+// BOTONES FLOTANTES REDES SOCIALES
+.social-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+    z-index: 999;
+
+    a {
+        width: 48px;
+        height: 48px;
+        border-radius: $radius-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: $color-secondary;
+        box-shadow: $shadow-md;
+        transition: all $transition-base;
+        text-decoration: none;
+
+        &:hover {
+            transform: translateX(-4px) scale(1.1);
+        }
+
+        &.fb {
+            background: #1877f2;
+            &:hover { background: #1565c0; }
+        }
+
+        &.ig {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            &:hover { opacity: 0.85; }
+        }
+
+        &.tk {
+            background: $color-dark-card;
+            border: 1px solid rgba(255,255,255,0.1);
+            &:hover { background: #000; border-color: #fff; }
+        }
+
+        &.wa {
+            background: #25d366;
+            &:hover { background: #1da851; }
+            animation: pulseOrange 2.5s ease infinite;
+        }
+    }
+}
+
+// SOCIAL BANNER (en secciones)
+.social-banner {
+    @include seccion-padding;
+    background: $color-dark-alt;
+    text-align: center;
+
+    &-inner {
+        @include contenedor(600px);
+        display: flex;
+        flex-direction: column;
+        gap: $space-lg;
+        align-items: center;
+    }
+
+    &-iconos {
+        display: flex;
+        gap: $space-md;
+        justify-content: center;
+
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: $space-xs;
+            color: $color-gray;
+            transition: all $transition-base;
+            text-decoration: none;
+
+            span:first-child {
+                width: 60px;
+                height: 60px;
+                border-radius: $radius-full;
+                background: $color-dark-card;
+                border: 1px solid $color-border-dark;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.6rem;
+                transition: all $transition-base;
+            }
+
+            span:last-child {
+                font-size: $size-xs;
+                font-family: $font-accent;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+
+            &.fb:hover span:first-child {
+                background: #1877f2;
+                border-color: #1877f2;
+                color: $color-secondary;
+                transform: translateY(-6px);
+                box-shadow: 0 8px 24px rgba(24,119,242,0.4);
+            }
+
+            &.ig:hover span:first-child {
+                background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+                border-color: transparent;
+                color: $color-secondary;
+                transform: translateY(-6px);
+            }
+
+            &.tk:hover span:first-child {
+                background: $color-dark;
+                border-color: $color-secondary;
+                color: $color-secondary;
+                transform: translateY(-6px);
+            }
+
+            &.wa:hover span:first-child {
+                background: #25d366;
+                border-color: #25d366;
+                color: $color-secondary;
+                transform: translateY(-6px);
+                box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+            }
+
+            &:hover span:last-child {
+                color: $color-secondary;
+            }
+        }
+
+        // ICONOS BOOTSTRAP
+.social-float a i,
+.nav-social a i,
+.footer-social a i,
+.social-banner-iconos a span i {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+    }
+}
